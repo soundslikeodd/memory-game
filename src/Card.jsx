@@ -5,11 +5,13 @@ import './Card.scss';
 const Card = ({
   flipped,
   face,
+  color,
   matched,
   handle,
 }) => (
   <div
-    className={`card${matched ? ' matched' : ''}`}
+    className={`card${matched ? ' matched' : ''}${!(flipped || matched) ? ' not-flipped' : ''}`}
+    style={{ color }}
     onClick={handle}
     onKeyPress={handle}
     role="button"
@@ -17,7 +19,7 @@ const Card = ({
   >
     {
       flipped || matched ? (
-        <div className="face">
+        <div className="face flipped">
           {face}
         </div>
       ) : (
@@ -30,6 +32,7 @@ const Card = ({
 Card.propTypes = {
   flipped: PropTypes.bool.isRequired,
   face: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
   matched: PropTypes.bool.isRequired,
   handle: PropTypes.func.isRequired,
 };

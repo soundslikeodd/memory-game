@@ -1,29 +1,44 @@
 
-#memory {
+body {
   background-color: ghostwhite;
+  text-align: center;
+}
 
-  .controls {
-    .ng-button {
-      background-color: white;
-      border: 2px solid black;
-      border-radius: 3px;
-      margin: 2px;
-      padding: 6px;
+#memory {
+  display: inline-block;
 
-      &:hover {
-        background-color: darkgray;
-      }
+  header {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 
-      &:active {
-        background-color: gray;
+    .controls {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .ng-button {
+        background-color: white;
+        border: 1px solid black;
+        border-radius: 3px;
+        margin: 2px;
+        padding: 6px;
+
+        &:hover {
+          background-color: darkgray;
+        }
+
+        &:active {
+          background-color: gray;
+        }
       }
     }
   }
 
   .board {
     display: grid;
-    border: 1px solid #000;
-    grid-template-columns: 75px 75px 75px 75px 75px 75px;
+    grid-template-columns: 50px 50px 50px 50px 50px 50px;
     grid-gap: 5px;
   }
 }
