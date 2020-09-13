@@ -27,16 +27,7 @@
           "max": 1,
           "maxEOF": 1
         }
-      ],
-      "jsx-a11y/label-has-associated-control": [
-        "error",
-        {
-          "controlComponents": [
-            "Select"
-          ]
-        }
-      ],
-      "jsx-a11y/label-has-for": 0
+      ]
     }
   },
   "stylelint": {
