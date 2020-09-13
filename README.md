@@ -2,7 +2,7 @@
 
 Simple game written for my children to play.
 
-It cost nothing to play and does not contain adds.
+It cost nothing to play and does not contain advertisements.
 
 The best part is that thier Dad wrote it. :smile:
 
