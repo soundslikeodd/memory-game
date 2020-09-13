@@ -22,6 +22,24 @@
   }
 }
 
+@keyframes pulse {
+  10% {
+    transform: scale(1.1);
+  }
+
+  35% {
+    transform: scale(1.15);
+  }
+
+  75% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 .card {
   border: 1px solid #000;
   border-radius: 5px;
@@ -41,13 +59,16 @@
     background: linear-gradient(45deg, rgba(2, 0, 36, 1) 0%, rgba(117, 186, 25, 1) 61%, rgba(255, 133, 0, 1) 100%);
   }
 
+  &.shake {
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+
+  &.pulse {
+    animation: pulse 0.5s;
+  }
+
   .face {
     font-weight: 600;
     font-size: 42px;
-  }
-
-  .flipped {
-    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-    transform: translate3d(0, 0, 0);
   }
 }

@@ -7,10 +7,16 @@ const Card = ({
   face,
   color,
   matched,
+  animation,
   handle,
 }) => (
   <div
-    className={`card${matched ? ' matched' : ''}${!(flipped || matched) ? ' not-flipped' : ''}`}
+    className={[
+      'card',
+      matched ? 'matched' : '',
+      !(flipped || matched) ? 'not-flipped' : '',
+      animation || '',
+    ].join(' ')}
     style={{ color }}
     onClick={handle}
     onKeyPress={handle}
@@ -19,7 +25,7 @@ const Card = ({
   >
     {
       flipped || matched ? (
-        <div className="face flipped">
+        <div className="face">
           {face}
         </div>
       ) : (
@@ -34,6 +40,7 @@ Card.propTypes = {
   face: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   matched: PropTypes.bool.isRequired,
+  animation: PropTypes.string.isRequired,
   handle: PropTypes.func.isRequired,
 };
 

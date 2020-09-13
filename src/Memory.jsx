@@ -37,6 +37,7 @@ const generateCard = (face, pairIndex, index) => ({
   face,
   key: `${face}${pairIndex}`,
   color: hexRainbow[index],
+  animation: null,
 });
 
 // use of sort to suffle is not very good
@@ -72,7 +73,6 @@ class Memory extends PureComponent {
     } = this.state;
     const card = board.filter((c) => c.key === key)[0];
     const previousFlipped = board.filter((c) => c.flipped)[0];
-    const delay = 1500;
     if (card && !card.flipped && !card.matched) {
       if (previousFlipped && previousFlipped.face === card.face) {
         // delay and match found
@@ -83,8 +83,12 @@ class Memory extends PureComponent {
             ...acc,
             (
               c.key === card.key || c.key === previousFlipped.key
-                ? { ...c, flipped: false, matched: true }
-                : c
+                ? {
+                  ...c,
+                  flipped: false,
+                  matched: true,
+                  animation: 'pulse',
+                } : c
             ),
           ], []),
         });
@@ -96,9 +100,13 @@ class Memory extends PureComponent {
           board: board.reduce((acc, c) => [
             ...acc,
             (
-              c.key === card.key
-                ? { ...c, flipped: true, matched: false }
-                : c
+              c.key === card.key || c.key === previousFlipped.key
+                ? {
+                  ...c,
+                  flipped: true,
+                  matched: false,
+                  animation: 'shake',
+                } : c
             ),
           ], []),
         });
@@ -109,11 +117,15 @@ class Memory extends PureComponent {
             ...acc,
             (
               c.key === card.key || c.key === previousFlipped.key
-                ? { ...c, flipped: false, matched: false }
-                : c
+                ? {
+                  ...c,
+                  flipped: false,
+                  matched: false,
+                  animation: null,
+                } : c
             ),
           ], []),
-        }), delay);
+        }), 1500);
       } else {
         // flip first of turn
         this.setState({
@@ -121,8 +133,11 @@ class Memory extends PureComponent {
             ...acc,
             (
               c.key === card.key
-                ? { ...c, flipped: true, matched: false }
-                : c
+                ? {
+                  ...c,
+                  flipped: true,
+                  matched: false,
+                } : c
             ),
           ], []),
         });
@@ -169,6 +184,7 @@ class Memory extends PureComponent {
               matched={c.matched}
               face={c.face}
               color={c.color}
+              animation={c.animation}
               handle={lockInput ? () => {} : () => this.handleClick(c.key)}
             />
           ))}
