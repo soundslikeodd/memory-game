@@ -24,14 +24,14 @@ const Card = ({
     tabIndex="-1"
   >
     {
-      flipped || matched ? (
-        <div className="face">
-          {face}
-        </div>
-      ) : (
-        <div className="face" />
-      )
-    }
+    flipped || matched ? (
+      <div className="face">
+        {face}
+      </div>
+    ) : (
+      <div className="face" />
+    )
+  }
   </div>
 );
 
@@ -40,8 +40,12 @@ Card.propTypes = {
   face: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   matched: PropTypes.bool.isRequired,
-  animation: PropTypes.string.isRequired,
+  animation: PropTypes.string,
   handle: PropTypes.func.isRequired,
+};
+
+Card.defaultProps = {
+  animation: null,
 };
 
 export default Card;
