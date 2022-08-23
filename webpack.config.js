@@ -49,8 +49,5 @@ module.exports = {
     publicPath: '',
     filename: 'memory.js',
   },
-  devServer: {
-    contentBase: './dist',
-  },
 };
 
