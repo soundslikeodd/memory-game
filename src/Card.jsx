@@ -2,40 +2,38 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Card.scss';
 
-function Card({
+const Card = ({
   flipped,
   face,
   color,
   matched,
   animation,
   handle,
-}) {
-  return (
-    <div
-      className={[
-        'card',
-        matched ? 'matched' : '',
-        !(flipped || matched) ? 'not-flipped' : '',
-        animation || '',
-      ].join(' ')}
-      style={{ color }}
-      onClick={handle}
-      onKeyPress={handle}
-      role="button"
-      tabIndex="-1"
-    >
-      {
-      flipped || matched ? (
-        <div className="face">
-          {face}
-        </div>
-      ) : (
-        <div className="face" />
-      )
-    }
-    </div>
-  );
-}
+}) => (
+  <div
+    className={[
+      'card',
+      matched ? 'matched' : '',
+      !(flipped || matched) ? 'not-flipped' : '',
+      animation || '',
+    ].join(' ')}
+    style={{ color }}
+    onClick={handle}
+    onKeyPress={handle}
+    role="button"
+    tabIndex="-1"
+  >
+    {
+    flipped || matched ? (
+      <div className="face">
+        {face}
+      </div>
+    ) : (
+      <div className="face" />
+    )
+  }
+  </div>
+);
 
 Card.propTypes = {
   flipped: PropTypes.bool.isRequired,
