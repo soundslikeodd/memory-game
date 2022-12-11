@@ -42,14 +42,20 @@ const generateCard = (face, pairIndex, index) => ({
 
 // use of sort to suffle is not very good
 const suffle = () => 0.5 - Math.random();
-const genBoard = () => cards
+const genBoard = (mixedCase) => cards
   .sort(suffle)
   .slice(0, 18)
   .reduce(
     (acc, c, i) => [
       ...acc,
       generateCard(c, 1, i),
-      generateCard(c, 2, i),
+      generateCard(
+        mixedCase
+          ? c.toLowerCase()
+          : c,
+        2,
+        i,
+      ),
     ],
     [],
   )
@@ -60,9 +66,11 @@ class Memory extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      board: genBoard(),
+      board: genBoard(false),
       turns: 0,
       lockInput: false,
+      mixedCase: false,
+      currentGameMixedCase: false,
     };
   }
 
@@ -74,7 +82,10 @@ class Memory extends PureComponent {
     const card = board.filter((c) => c.key === key)[0];
     const previousFlipped = board.filter((c) => c.flipped)[0];
     if (card && !card.flipped && !card.matched) {
-      if (previousFlipped && previousFlipped.face === card.face) {
+      if (
+        previousFlipped
+        && previousFlipped.face.toLowerCase() === card.face.toLowerCase()
+      ) {
         // delay and match found
         this.setState({
           turns: turns + 1,
@@ -150,31 +161,58 @@ class Memory extends PureComponent {
       board,
       turns,
       lockInput,
+      mixedCase,
+      currentGameMixedCase,
     } = this.state;
     return (
       <main id="memory">
         <header>
-          <div className="controls">
+          <div className="game-header">
             <h3>Memory</h3>
-            <button
-              type="button"
-              className="ng-button"
-              onClick={() => this.setState({
-                board: genBoard(),
-                turns: 0,
-                lockInput: false,
-              })}
+            <div
+              className="game-controls"
             >
-              New game
-            </button>
+              <button
+                type="button"
+                className="ng-button"
+                onClick={() => this.setState({
+                  board: genBoard(mixedCase),
+                  currentGameMixedCase: mixedCase,
+                  turns: 0,
+                  lockInput: false,
+                })}
+              >
+                New game
+              </button>
+              <div
+                className="game-settings"
+              >
+                <input
+                  type="checkbox"
+                  className="mx-checkbox"
+                  onClick={() => this.setState({
+                    mixedCase: !mixedCase,
+                  })}
+                />
+                Mixed Case
+              </div>
+            </div>
           </div>
-          <span>
+          <div>
             Number of turns
             &nbsp;
             <b>
               {turns}
             </b>
-          </span>
+            {
+              currentGameMixedCase && (
+                <>
+                  <br />
+                  Mixed Case Turned On
+                </>
+              )
+            }
+          </div>
         </header>
         <section className="board">
           {board.map((c) => (

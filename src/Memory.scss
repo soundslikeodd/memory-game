@@ -11,25 +11,36 @@ body {
     flex-direction: column;
     text-align: left;
 
-    .controls {
+    .game-header {
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
 
-      .ng-button {
-        background-color: white;
-        border: 1px solid black;
-        border-radius: 3px;
-        margin: 2px;
-        padding: 6px;
+      .game-controls {
+        display: flex;
+        flex-direction: column;
 
-        &:hover {
-          background-color: darkgray;
+        .ng-button {
+          background-color: white;
+          border: 1px solid black;
+          border-radius: 3px;
+          margin: 2px;
+          padding: 6px;
+
+          &:hover {
+            background-color: darkgray;
+          }
+
+          &:active {
+            background-color: gray;
+          }
         }
 
-        &:active {
-          background-color: gray;
+        .game-settings {
+          font-size: 10px;
+          display: flex;
+          align-items: center;
         }
       }
     }

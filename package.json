@@ -8,7 +8,7 @@
   "scripts": {
     "clean": "rm -rf dist && rm -rf node_modules",
     "setup": "npm install",
-    "app": "npm run setup && npm run lint && webpack-dev-server --mode development",
+    "start": "npm run setup && npm run lint && webpack-dev-server --mode development",
     "build": "webpack --mode production",
     "lint:es": "eslint --format=pretty --ext .jsx --ext .js .",
     "lint:style": "stylelint '**/*.scss'",
