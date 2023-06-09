@@ -1,6 +1,6 @@
 {
   "name": "memory-game",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "childrens memory game",
   "main": "index.js",
   "author": "matthew schaadt",
